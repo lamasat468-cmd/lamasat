@@ -252,30 +252,6 @@ body{
 }
 .marquee-dot{width:6px;height:6px;background:rgba(255,255,255,0.5);border-radius:50%;display:inline-block}
  
-/* ===== CITIES SECTION ===== */
-.cities-section{
-  background:var(--dark);
-  padding:3rem 2rem;
-}
-.cities-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:1rem;
-  max-width:1400px;margin:0 auto;
-}
-.city-card{
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(201,168,76,0.15);
-  border-radius:12px;
-  padding:1.5rem 1rem;
-  text-align:center;
-  transition:var(--transition);
-}
-.city-card:hover{background:rgba(201,168,76,0.08);border-color:var(--gold);transform:translateY(-4px)}
-.city-card i{font-size:1.8rem;color:var(--gold);margin-bottom:0.5rem;display:block}
-.city-card h3{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.2rem}
-.city-card p{font-size:0.78rem;color:rgba(255,255,255,0.45)}
- 
 /* ===== SECTIONS SHARED ===== */
 .section{padding:5rem 2rem}
 .container{max-width:1400px;margin:0 auto}
@@ -311,7 +287,24 @@ body{
 }
 .svc-card:hover{transform:translateY(-8px);box-shadow:0 16px 50px rgba(0,0,0,0.12)}
  
-/* Scrollable gallery for services */
+/* ===== HERO IMAGE STRIP - Full width images above/below title ===== */
+.svc-hero-images{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:4px;
+  height:240px;
+  overflow:hidden;
+}
+.svc-hero-images img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.5s ease;
+}
+.svc-hero-images img:hover{transform:scale(1.05)}
+ 
+/* ===== SCROLLABLE GALLERY for other services ===== */
 .svc-gallery{
   display:flex;
   overflow-x:auto;
@@ -401,41 +394,106 @@ body{
 .feat-title{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
 .feat-text{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.7}
  
-/* ===== GALLERY SECTION ===== */
-.gallery-section{background:var(--cream2)}
-.gallery-masonry{
-  columns:4 220px;
-  column-gap:1rem;
+/* ===== GALLERY SECTION - NEW STYLE ===== */
+.gallery-section{background:var(--dark);padding:5rem 0}
+.gallery-section .sec-header{padding:0 2rem}
+.gallery-section .sec-title{color:var(--white)}
+.gallery-section .sec-eyebrow{color:var(--gold)}
+.gallery-section .sec-desc{color:rgba(255,255,255,0.55)}
+ 
+.gallery-category{margin-bottom:4rem}
+.gallery-cat-header{
+  display:flex;align-items:center;gap:1rem;
+  padding:0 2rem;
+  margin-bottom:1.5rem;
 }
-.gal-item{
-  break-inside:avoid;
-  margin-bottom:1rem;
-  border-radius:14px;
+.gallery-cat-line{flex:1;height:1px;background:rgba(201,168,76,0.2)}
+.gallery-cat-title{
+  font-family:'Amiri',serif;
+  font-size:1.6rem;font-weight:700;
+  color:var(--white);
+  white-space:nowrap;
+}
+.gallery-cat-title span{
+  color:var(--gold);
+  font-size:0.85rem;
+  font-family:'Tajawal',sans-serif;
+  font-weight:600;
+  margin-right:0.5rem;
+}
+.gallery-cat-icon{
+  width:42px;height:42px;
+  background:rgba(201,168,76,0.12);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;color:var(--gold);
+  flex-shrink:0;
+}
+ 
+/* Horizontal scroll strip for gallery */
+.gallery-strip{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  padding:0 2rem 1rem;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(201,168,76,0.3) transparent;
+}
+.gallery-strip::-webkit-scrollbar{height:4px}
+.gallery-strip::-webkit-scrollbar-track{background:transparent}
+.gallery-strip::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:2px}
+ 
+.gallery-strip .gal-item{
+  flex-shrink:0;
+  border-radius:12px;
   overflow:hidden;
   position:relative;
   cursor:pointer;
 }
-.gal-item img{width:100%;display:block;transition:transform 0.5s ease}
-.gal-item:hover img{transform:scale(1.05)}
+.gallery-strip .gal-item.tall{width:240px;height:320px}
+.gallery-strip .gal-item.wide{width:380px;height:240px}
+.gallery-strip .gal-item.sq{width:260px;height:260px}
+ 
+.gallery-strip .gal-item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.5s ease;
+}
+.gallery-strip .gal-item:hover img{transform:scale(1.06)}
 .gal-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);
+  background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 50%);
   opacity:0;transition:var(--transition);
-  display:flex;align-items:flex-end;padding:1rem;
+  display:flex;align-items:flex-end;padding:1rem 1.2rem;
 }
 .gal-item:hover .gal-overlay{opacity:1}
-.gal-overlay span{color:white;font-weight:600;font-size:0.85rem}
+.gal-overlay span{color:white;font-weight:600;font-size:0.9rem}
  
-/* Gallery category label */
-.gal-section-label{
-  font-family:'Amiri',serif;
-  font-size:1.5rem;
-  font-weight:700;
-  color:var(--dark);
-  margin:2rem 0 1rem;
-  padding-right:1rem;
-  border-right:4px solid var(--gold);
+/* Grid gallery for desktop */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  padding:0 2rem;
 }
+.gallery-grid .gal-item{
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  aspect-ratio:1/1;
+}
+.gallery-grid .gal-item.span2{grid-column:span 2;aspect-ratio:2/1}
+.gallery-grid .gal-item.tall{grid-row:span 2;aspect-ratio:1/2}
+.gallery-grid .gal-item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.5s ease;
+}
+.gallery-grid .gal-item:hover img{transform:scale(1.05)}
  
 /* ===== ABOUT ===== */
 .about-section{background:var(--white)}
@@ -518,15 +576,6 @@ body{
 .bcb.ph{background:rgba(255,255,255,0.15);color:white;border:1.5px solid rgba(255,255,255,0.3)}
 .bcb:hover{transform:translateY(-3px);filter:brightness(1.1)}
  
-/* Map embed */
-.map-wrap{
-  border-radius:16px;
-  overflow:hidden;
-  margin-top:3rem;
-  border:2px solid rgba(201,168,76,0.3);
-}
-.map-wrap iframe{width:100%;height:380px;border:0;display:block}
- 
 /* ===== FOOTER ===== */
 .main-footer{background:#0A0A0A;color:#a0a0a0;padding:4rem 2rem 2rem}
 .footer-grid{
@@ -580,6 +629,7 @@ body{
   .about-grid{grid-template-columns:1fr;gap:2rem}
   .footer-grid{grid-template-columns:1fr 1fr}
   .services-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
   .hero-h1{font-size:2.4rem}
@@ -587,10 +637,14 @@ body{
   .main-nav{padding:0 1rem}
   .nav-links{display:none}
   .hero-content{padding:3rem 1.25rem}
-  .gallery-masonry{columns:2 150px}
   .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .svc-hero-images{grid-template-columns:1fr 1fr;height:200px}
+  .svc-hero-images img:last-child{display:none}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid .gal-item.span2{grid-column:span 2}
+  .gallery-grid .gal-item.tall{grid-row:span 1;aspect-ratio:1/1}
 }
 </style>
 </head>
@@ -670,7 +724,6 @@ body{
     <span class="marquee-item"><i class="fas fa-check-circle"></i> خدمة 24/7</span>
   </div>
 </div>
-</section>
  
 <!-- Services -->
 <section class="section services-section" id="services">
@@ -696,7 +749,7 @@ body{
           <div class="svc-tag"><i class="fas fa-fire"></i> عرض خاص - خصم 30%</div>
           <i class="fas fa-chair svc-icon"></i>
           <h3 class="svc-title">تأجير جلسات شعبية تراثية فخمة في المنطقة الشرقية</h3>
-          <p class="svc-desc">دلة رسلان الشركة الأولى والرائدة في تأجير الجلسات الشعبية التراثية الفخمة بالدمام والخبر والظهران والقطيف والجبيل والهفوف. نوفر أفخر الجلسات المصممة بإتقان عالمي تجمع بين الأصالة والعصرية.</p>
+          <p class="svc-desc">دلة رسلان الشركة الأولى والرائدة في تأجير الجلسات الشعبية التراثية الفخمة بالدمام والخبر والظهران والقطيف والجبيل والهفوف.</p>
           <ul class="svc-features">
             <li><i class="fas fa-check-circle"></i><span><strong>جلسات شعبية تراثية أصيلة</strong> - مصنوعة يدوياً من أجود الخامات</span></li>
             <li><i class="fas fa-check-circle"></i><span><strong>جلسات خارجية فاخرة للإيجار</strong> - توصيل مجاني خلال ساعتين</span></li>
@@ -711,16 +764,13 @@ body{
         </div>
       </article>
  
-      <!-- Service 2 - كراسي وطاولات -->
+      <!-- Service 2 - كراسي وطاولات - صور كاملة فوق وتحت العنوان -->
       <article class="svc-card">
-        <div class="svc-gallery">
+        <!-- صور فوق العنوان - ثلاث صور كاملة -->
+        <div class="svc-hero-images">
           <img src="https://i.postimg.cc/d3vZVxwT/17e65d04-7de6-4088-b164-5a0bb862574b.jpg" alt="كراسي وطاولات فاخرة">
           <img src="https://i.postimg.cc/zXzRm6xn/ce719161-fe44-4758-ba17-6aab0ccec722.jpg" alt="طاولات استقبال">
           <img src="https://i.postimg.cc/W1tFzrL4/af3315d6-81b5-491b-a92e-8661bf0935aa.jpg" alt="طاولات بوفيه">
-          <img src="https://i.postimg.cc/JzgyknMd/9701cfe5-bcfb-4128-b815-c0d7f7e7c0a8.jpg" alt="طاولات زجاجية">
-          <img src="https://i.postimg.cc/mZwtSVTd/42d8eaf1-6bf8-4a60-89f4-3d3c90d35296.jpg" alt="كراسي حفلات">
-          <img src="https://i.postimg.cc/wjtMgpLR/18eed49b-fd4e-4749-9b66-9a34badb0d42.jpg" alt="طاولات عزائم">
-          <img src="https://i.postimg.cc/764Z3Jcd/bb4afedc-00a9-4fd7-a778-6f2f19a717bb.jpg" alt="كراسي وطاولات كلاسيكية">
         </div>
         <div class="svc-body">
           <div class="svc-tag"><i class="fas fa-star"></i> الأكثر طلباً</div>
@@ -734,6 +784,14 @@ body{
             <li><i class="fas fa-check-circle"></i><span><strong>سجاد أحمر ملكي للمداخل</strong> - طابع ملكي لحفلاتكم</span></li>
             <li><i class="fas fa-check-circle"></i><span><strong>توصيل وتركيب مجاني بالشرقية</strong> - مع ضمان الالتزام بالمواعيد</span></li>
           </ul>
+        </div>
+        <!-- صور تحت العنوان - ثلاث صور أخرى -->
+        <div class="svc-hero-images" style="border-top:3px solid var(--gold)">
+          <img src="https://i.postimg.cc/JzgyknMd/9701cfe5-bcfb-4128-b815-c0d7f7e7c0a8.jpg" alt="طاولات زجاجية">
+          <img src="https://i.postimg.cc/mZwtSVTd/42d8eaf1-6bf8-4a60-89f4-3d3c90d35296.jpg" alt="كراسي حفلات">
+          <img src="https://i.postimg.cc/764Z3Jcd/bb4afedc-00a9-4fd7-a778-6f2f19a717bb.jpg" alt="كراسي كلاسيكية">
+        </div>
+        <div style="padding:1.25rem 2rem">
           <div class="svc-actions">
             <a href="https://wa.me/966551173352?text=أرغب في الاستفسار عن تأجير كراسي وطاولات فاخرة" class="svc-btn wa"><i class="fab fa-whatsapp"></i> واتساب</a>
             <a href="tel:0551173352" class="svc-btn ph"><i class="fas fa-phone"></i> 0551173352</a>
@@ -768,16 +826,13 @@ body{
         </div>
       </article>
  
-      <!-- Service 4 - ضيافة -->
+      <!-- Service 4 - ضيافة - صور كاملة فوق وتحت العنوان -->
       <article class="svc-card">
-        <div class="svc-gallery">
+        <!-- صور فوق -->
+        <div class="svc-hero-images">
           <img src="https://i.postimg.cc/252KwP9g/5ddac03b-4402-4b6a-8527-d08eaa25afc3.jpg" alt="صبابين قهوة">
           <img src="https://i.postimg.cc/XY3WD6xj/805f314a-5a3b-43ca-ad61-9856fe5fa869.jpg" alt="ضيافة احترافية">
           <img src="https://i.postimg.cc/rpZLm0TG/33ac88be-7221-45bb-b91b-ad58f6d91598.jpg" alt="قهوجيين مناسبات">
-          <img src="https://i.postimg.cc/ZnpkVwdb/6e67f1c1-c4cc-4121-8d67-6f3c020f21b6.jpg" alt="صبابات قهوة">
-          <img src="https://i.postimg.cc/nzrww06X/748b3d59-3b58-4c11-95e5-fe608f4cce31.jpg" alt="خدمة ضيافة">
-          <img src="https://i.postimg.cc/G9w7tr9d/c4048581-8e4f-4b9f-a1a5-8238041cd653.jpg" alt="ضيافة فاخرة">
-          <img src="https://i.postimg.cc/dQbwryyB/9db8c66f-6016-4dd0-b05c-af41d6fb8816.jpg" alt="صبابين وصبابات">
         </div>
         <div class="svc-body">
           <div class="svc-tag"><i class="fas fa-coffee"></i> ضيافة راقية</div>
@@ -791,6 +846,14 @@ body{
             <li><i class="fas fa-check-circle"></i><span><strong>توفير جميع مستلزمات الضيافة</strong> - دلال وكاسات وتوابل القهوة</span></li>
             <li><i class="fas fa-check-circle"></i><span><strong>خدمة لجميع مدن الشرقية</strong> - نصل إليكم في أي مكان</span></li>
           </ul>
+        </div>
+        <!-- صور تحت -->
+        <div class="svc-hero-images" style="border-top:3px solid var(--gold)">
+          <img src="https://i.postimg.cc/ZnpkVwdb/6e67f1c1-c4cc-4121-8d67-6f3c020f21b6.jpg" alt="صبابات قهوة">
+          <img src="https://i.postimg.cc/G9w7tr9d/c4048581-8e4f-4b9f-a1a5-8238041cd653.jpg" alt="ضيافة فاخرة">
+          <img src="https://i.postimg.cc/dQbwryyB/9db8c66f-6016-4dd0-b05c-af41d6fb8816.jpg" alt="صبابين وصبابات">
+        </div>
+        <div style="padding:1.25rem 2rem">
           <div class="svc-actions">
             <a href="https://wa.me/966551173352?text=أرغب في الاستفسار عن خدمات الضيافة وصبابين القهوة" class="svc-btn wa"><i class="fab fa-whatsapp"></i> واتساب</a>
             <a href="tel:0551173352" class="svc-btn ph"><i class="fas fa-phone"></i> 0551173352</a>
@@ -810,7 +873,7 @@ body{
           <div class="svc-tag"><i class="fas fa-gem"></i> خدمة VIP</div>
           <i class="fas fa-magic svc-icon"></i>
           <h3 class="svc-title">تنسيق وتجهيز الحفلات الشامل بالمنطقة الشرقية</h3>
-          <p class="svc-desc">فريق دلة رسلان الإبداعي يقدم خدمة التنسيق والتجهيز الكامل لجميع المناسبات من البداية للنهاية، من الأفراح إلى حفلات الأعمال.</p>
+          <p class="svc-desc">فريق دلة رسلان الإبداعي يقدم خدمة التنسيق والتجهيز الكامل لجميع المناسبات من البداية للنهاية.</p>
           <ul class="svc-features">
             <li><i class="fas fa-check-circle"></i><span><strong>تنسيق أفراح ومناسبات كامل</strong> - من التخطيط حتى التنفيذ النهائي</span></li>
             <li><i class="fas fa-check-circle"></i><span><strong>كوش أفراح وسجاد فاخر</strong> - أحدث تصاميم عصرية وتقليدية</span></li>
@@ -837,7 +900,7 @@ body{
           <div class="svc-tag"><i class="fas fa-crown"></i> باقات مخصصة</div>
           <i class="fas fa-campground svc-icon"></i>
           <h3 class="svc-title">تأجير خيام فخمة وبيوت شعر للفعاليات الكبرى</h3>
-          <p class="svc-desc">نمتلك أضخم أسطول من الخيام الفاخرة والأوروبية وبيوت الشعر التراثية في المنطقة الشرقية، من أفضل المواد المقاومة لجميع الظروف الجوية.</p>
+          <p class="svc-desc">نمتلك أضخم أسطول من الخيام الفاخرة والأوروبية وبيوت الشعر التراثية في المنطقة الشرقية.</p>
           <ul class="svc-features">
             <li><i class="fas fa-check-circle"></i><span><strong>خيام بأحجام متعددة</strong> - تتسع من 20 إلى 1000 شخص</span></li>
             <li><i class="fas fa-check-circle"></i><span><strong>بيوت شعر تراثية</strong> - مثالية للمناسبات التراثية والوطنية</span></li>
@@ -914,73 +977,205 @@ body{
   </div>
 </section>
  
-<!-- Gallery -->
-<section class="section gallery-section" id="gallery">
-  <div class="container">
-    <div class="sec-header">
-      <span class="sec-eyebrow">معرض أعمالنا</span>
-      <h2 class="sec-title">صور <span>خدماتنا</span></h2>
-      <p class="sec-desc">نماذج من مناسباتنا الراقية التي نفذناها في المنطقة الشرقية</p>
+<!-- ===== GALLERY SECTION - معرض خدماتنا ===== -->
+<section class="gallery-section" id="gallery">
+  <div class="sec-header">
+    <span class="sec-eyebrow">معرض أعمالنا</span>
+    <h2 class="sec-title" style="color:var(--white)">معرض <span>خدماتنا</span></h2>
+    <p class="sec-desc" style="color:rgba(255,255,255,0.55)">نماذج من مناسباتنا الراقية التي نفذناها في المنطقة الشرقية</p>
+  </div>
+ 
+  <!-- الجلسات الشعبية التراثية -->
+  <div class="gallery-category">
+    <div class="gallery-cat-header">
+      <div class="gallery-cat-icon"><i class="fas fa-chair"></i></div>
+      <h3 class="gallery-cat-title"><span>01</span> الجلسات الشعبية التراثية</h3>
+      <div class="gallery-cat-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item span2">
+        <img src="https://i.postimg.cc/J067C6hg/4b21c666-94e1-4f99-8929-bb8c8359d90a.jpg" alt="جلسات شعبية" loading="lazy">
+        <div class="gal-overlay"><span>جلسة شعبية تراثية فاخرة</span></div>
+      </div>
+      <div class="gal-item tall" style="grid-row:span 2">
+        <img src="https://i.postimg.cc/Bn1SRCfy/c05a65ed-6192-470a-aaad-f16ae5e0daa3.jpg" alt="جلسات تراثية" loading="lazy">
+        <div class="gal-overlay"><span>جلسة تراثية</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/rsmcj19H/d24f9dd9-0544-451c-a60d-37606b1920c7.jpg" alt="جلسات فاخرة" loading="lazy">
+        <div class="gal-overlay"><span>جلسة مرتفعة</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/xjx9CZfD/fdc551eb-9f5f-422d-9c8c-3c1e78bb0f1e.jpg" alt="جلسة عربية" loading="lazy">
+        <div class="gal-overlay"><span>جلسة عربية أصيلة</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/Z53mwK6j/381d8c36-22c1-4ed8-b6b4-d36ee501b3b3.jpg" alt="جلسة شعبية" loading="lazy">
+        <div class="gal-overlay"><span>جلسة VIP</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/zv6mk9Bs/3bcfb4b2-ad8e-47bd-bdd5-491fa861ce83.jpg" alt="جلسة تراثية راقية" loading="lazy">
+        <div class="gal-overlay"><span>جلسة ملكية</span></div>
+      </div>
     </div>
   </div>
-  <div style="max-width:1400px;margin:0 auto;padding:0 2rem">
  
-    <p class="gal-section-label">الجلسات الشعبية التراثية</p>
-    <div class="gallery-masonry">
-      <div class="gal-item"><img src="https://i.postimg.cc/J067C6hg/4b21c666-94e1-4f99-8929-bb8c8359d90a.jpg" alt="جلسات شعبية" loading="lazy"><div class="gal-overlay"><span>جلسة شعبية تراثية</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/Bn1SRCfy/c05a65ed-6192-470a-aaad-f16ae5e0daa3.jpg" alt="جلسات تراثية" loading="lazy"><div class="gal-overlay"><span>جلسة تراثية فاخرة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/rsmcj19H/d24f9dd9-0544-451c-a60d-37606b1920c7.jpg" alt="جلسات فاخرة" loading="lazy"><div class="gal-overlay"><span>جلسة شعبية مرتفعة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/xjx9CZfD/fdc551eb-9f5f-422d-9c8c-3c1e78bb0f1e.jpg" alt="جلسة عربية" loading="lazy"><div class="gal-overlay"><span>جلسة عربية أصيلة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/Z53mwK6j/381d8c36-22c1-4ed8-b6b4-d36ee501b3b3.jpg" alt="جلسة شعبية" loading="lazy"><div class="gal-overlay"><span>جلسة VIP</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/zv6mk9Bs/3bcfb4b2-ad8e-47bd-bdd5-491fa861ce83.jpg" alt="جلسة تراثية راقية" loading="lazy"><div class="gal-overlay"><span>جلسة ملكية</span></div></div>
+  <!-- الكراسي والطاولات -->
+  <div class="gallery-category">
+    <div class="gallery-cat-header">
+      <div class="gallery-cat-icon"><i class="fas fa-table"></i></div>
+      <h3 class="gallery-cat-title"><span>02</span> الكراسي والطاولات الفاخرة</h3>
+      <div class="gallery-cat-line"></div>
     </div>
- 
-    <p class="gal-section-label" style="margin-top:2.5rem">الكراسي والطاولات الفاخرة</p>
-    <div class="gallery-masonry">
-      <div class="gal-item"><img src="https://i.postimg.cc/d3vZVxwT/17e65d04-7de6-4088-b164-5a0bb862574b.jpg" alt="كراسي وطاولات" loading="lazy"><div class="gal-overlay"><span>طاولات استقبال</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/zXzRm6xn/ce719161-fe44-4758-ba17-6aab0ccec722.jpg" alt="طاولات" loading="lazy"><div class="gal-overlay"><span>كراسي فاخرة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/W1tFzrL4/af3315d6-81b5-491b-a92e-8661bf0935aa.jpg" alt="طاولات بوفيه" loading="lazy"><div class="gal-overlay"><span>طاولات بوفيه</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/JzgyknMd/9701cfe5-bcfb-4128-b815-c0d7f7e7c0a8.jpg" alt="طاولات زجاجية" loading="lazy"><div class="gal-overlay"><span>طاولات زجاجية</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/mZwtSVTd/42d8eaf1-6bf8-4a60-89f4-3d3c90d35296.jpg" alt="كراسي حفلات" loading="lazy"><div class="gal-overlay"><span>كراسي حفلات</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/wjtMgpLR/18eed49b-fd4e-4749-9b66-9a34badb0d42.jpg" alt="طاولات عزائم" loading="lazy"><div class="gal-overlay"><span>طاولات عزائم</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/764Z3Jcd/bb4afedc-00a9-4fd7-a778-6f2f19a717bb.jpg" alt="كراسي كلاسيكية" loading="lazy"><div class="gal-overlay"><span>كراسي كلاسيكية</span></div></div>
+    <div class="gallery-strip">
+      <div class="gal-item wide">
+        <img src="https://i.postimg.cc/d3vZVxwT/17e65d04-7de6-4088-b164-5a0bb862574b.jpg" alt="كراسي وطاولات" loading="lazy">
+        <div class="gal-overlay"><span>طاولات استقبال</span></div>
+      </div>
+      <div class="gal-item sq">
+        <img src="https://i.postimg.cc/zXzRm6xn/ce719161-fe44-4758-ba17-6aab0ccec722.jpg" alt="طاولات" loading="lazy">
+        <div class="gal-overlay"><span>كراسي فاخرة</span></div>
+      </div>
+      <div class="gal-item tall">
+        <img src="https://i.postimg.cc/W1tFzrL4/af3315d6-81b5-491b-a92e-8661bf0935aa.jpg" alt="طاولات بوفيه" loading="lazy">
+        <div class="gal-overlay"><span>طاولات بوفيه</span></div>
+      </div>
+      <div class="gal-item sq">
+        <img src="https://i.postimg.cc/JzgyknMd/9701cfe5-bcfb-4128-b815-c0d7f7e7c0a8.jpg" alt="طاولات زجاجية" loading="lazy">
+        <div class="gal-overlay"><span>طاولات زجاجية</span></div>
+      </div>
+      <div class="gal-item wide">
+        <img src="https://i.postimg.cc/mZwtSVTd/42d8eaf1-6bf8-4a60-89f4-3d3c90d35296.jpg" alt="كراسي حفلات" loading="lazy">
+        <div class="gal-overlay"><span>كراسي حفلات</span></div>
+      </div>
+      <div class="gal-item sq">
+        <img src="https://i.postimg.cc/wjtMgpLR/18eed49b-fd4e-4749-9b66-9a34badb0d42.jpg" alt="طاولات عزائم" loading="lazy">
+        <div class="gal-overlay"><span>طاولات عزائم</span></div>
+      </div>
+      <div class="gal-item tall">
+        <img src="https://i.postimg.cc/764Z3Jcd/bb4afedc-00a9-4fd7-a778-6f2f19a717bb.jpg" alt="كراسي كلاسيكية" loading="lazy">
+        <div class="gal-overlay"><span>كراسي كلاسيكية</span></div>
+      </div>
     </div>
- 
-    <p class="gal-section-label" style="margin-top:2.5rem">المكيفات الصحراوية والفريون</p>
-    <div class="gallery-masonry">
-      <div class="gal-item"><img src="https://i.postimg.cc/xTNVdTpL/0bdbcc15-ce38-4e43-982d-27b5fd501fc7.jpg" alt="مكيفات صحراوية" loading="lazy"><div class="gal-overlay"><span>مكيف صحراوي</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/rwS6SZLb/8d8cdc7f-d49d-4c62-b8fb-acd6a3a23fdb.jpg" alt="مكيفات فريون" loading="lazy"><div class="gal-overlay"><span>مكيف فريون</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/W4nQyDz6/a4aca551-e8c8-4534-a26e-21b039423797.jpg" alt="مكيفات للحفلات" loading="lazy"><div class="gal-overlay"><span>مكيفات حفلات</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/g2y5wwVx/3a42c124-f80a-49a7-a290-af3998338857.jpg" alt="مكيفات مناسبات" loading="lazy"><div class="gal-overlay"><span>مكيفات مناسبات</span></div></div>
-    </div>
- 
-    <p class="gal-section-label" style="margin-top:2.5rem">خدمات الضيافة وصبابين القهوة</p>
-    <div class="gallery-masonry">
-      <div class="gal-item"><img src="https://i.postimg.cc/252KwP9g/5ddac03b-4402-4b6a-8527-d08eaa25afc3.jpg" alt="صبابين قهوة" loading="lazy"><div class="gal-overlay"><span>صبابين قهوة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/XY3WD6xj/805f314a-5a3b-43ca-ad61-9856fe5fa869.jpg" alt="ضيافة احترافية" loading="lazy"><div class="gal-overlay"><span>ضيافة احترافية</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/rpZLm0TG/33ac88be-7221-45bb-b91b-ad58f6d91598.jpg" alt="قهوجيين" loading="lazy"><div class="gal-overlay"><span>قهوجيين مناسبات</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/ZnpkVwdb/6e67f1c1-c4cc-4121-8d67-6f3c020f21b6.jpg" alt="صبابات قهوة" loading="lazy"><div class="gal-overlay"><span>صبابات قهوة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/nzrww06X/748b3d59-3b58-4c11-95e5-fe608f4cce31.jpg" alt="خدمة ضيافة" loading="lazy"><div class="gal-overlay"><span>خدمة ضيافة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/G9w7tr9d/c4048581-8e4f-4b9f-a1a5-8238041cd653.jpg" alt="ضيافة فاخرة" loading="lazy"><div class="gal-overlay"><span>ضيافة فاخرة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/dQbwryyB/9db8c66f-6016-4dd0-b05c-af41d6fb8816.jpg" alt="صبابين وصبابات" loading="lazy"><div class="gal-overlay"><span>فريق الضيافة</span></div></div>
-    </div>
- 
-    <p class="gal-section-label" style="margin-top:2.5rem">كوش الأفراح والتنسيق</p>
-    <div class="gallery-masonry">
-      <div class="gal-item"><img src="https://i.postimg.cc/4NhbWGyT/86cbdc69-021d-4387-bcb4-7b1d3367bd8f.jpg" alt="جلسات شعبية الدمام" loading="lazy"><div class="gal-overlay"><span>جلسات الدمام</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/KYT0B44R/ec67fc5b-4e9e-4dd3-8218-5b9dcb41f9e5.jpg" alt="كوش أعراس" loading="lazy"><div class="gal-overlay"><span>كوش أفراح</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/3Nt1YvbW/61d7558a-b73e-4d24-a2f9-e51af4606744.jpg" alt="كوش زفاف" loading="lazy"><div class="gal-overlay"><span>كوش زفاف</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/Gpvj9NSY/5cc6ad67-8640-4a76-a88e-9e709ccd121d.jpg" alt="طاولات استقبال" loading="lazy"><div class="gal-overlay"><span>طاولات الاستقبال</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/SR16wpJX/c0000ed6-2739-49b4-ba7e-15719da908aa.jpg" alt="تنسيق كوش" loading="lazy"><div class="gal-overlay"><span>تنسيق كوش</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/26F0y6SH/957f4ce1-0cd0-4d6d-986a-22d225929a52.jpg" alt="طاولات استقبال" loading="lazy"><div class="gal-overlay"><span>استقبال فاخر</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/Qtsq23JV/167600bf-5fa8-40be-8e38-185514498486.jpg" alt="كوش أفراح" loading="lazy"><div class="gal-overlay"><span>كوش أفراح</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/02308m0L/fa8b6b9a-d2c7-4d42-87a3-708b8240deed.jpg" alt="طاولات الرياض" loading="lazy"><div class="gal-overlay"><span>طاولات فاخرة</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/3wjXCqQ2/164ad701-6edc-4507-93bb-4577e3daf619.jpg" alt="كوشات" loading="lazy"><div class="gal-overlay"><span>كوشات راقية</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/8kXhHW9w/aee97b6a-b138-4418-820a-bd3b5118366c.jpg" alt="تنسيق حفلات" loading="lazy"><div class="gal-overlay"><span>تنسيق حفلات</span></div></div>
-      <div class="gal-item"><img src="https://i.postimg.cc/QMgpj7HP/11bb39b5-5d5d-4373-936d-68fa24a9c3d7.jpg" alt="ديكور مناسبات" loading="lazy"><div class="gal-overlay"><span>ديكور مناسبات</span></div></div>
-    </div>
- 
   </div>
+ 
+  <!-- المكيفات -->
+  <div class="gallery-category">
+    <div class="gallery-cat-header">
+      <div class="gallery-cat-icon"><i class="fas fa-snowflake"></i></div>
+      <h3 class="gallery-cat-title"><span>03</span> المكيفات الصحراوية والفريون</h3>
+      <div class="gallery-cat-line"></div>
+    </div>
+    <div class="gallery-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="gal-item span2" style="aspect-ratio:2/1">
+        <img src="https://i.postimg.cc/xTNVdTpL/0bdbcc15-ce38-4e43-982d-27b5fd501fc7.jpg" alt="مكيفات صحراوية" loading="lazy">
+        <div class="gal-overlay"><span>مكيف صحراوي</span></div>
+      </div>
+      <div class="gal-item" style="aspect-ratio:1/1">
+        <img src="https://i.postimg.cc/rwS6SZLb/8d8cdc7f-d49d-4c62-b8fb-acd6a3a23fdb.jpg" alt="مكيفات فريون" loading="lazy">
+        <div class="gal-overlay"><span>مكيف فريون</span></div>
+      </div>
+      <div class="gal-item" style="aspect-ratio:1/1">
+        <img src="https://i.postimg.cc/W4nQyDz6/a4aca551-e8c8-4534-a26e-21b039423797.jpg" alt="مكيفات للحفلات" loading="lazy">
+        <div class="gal-overlay"><span>مكيفات حفلات</span></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- الضيافة -->
+  <div class="gallery-category">
+    <div class="gallery-cat-header">
+      <div class="gallery-cat-icon"><i class="fas fa-mug-hot"></i></div>
+      <h3 class="gallery-cat-title"><span>04</span> خدمات الضيافة وصبابين القهوة</h3>
+      <div class="gallery-cat-line"></div>
+    </div>
+    <div class="gallery-strip">
+      <div class="gal-item tall">
+        <img src="https://i.postimg.cc/252KwP9g/5ddac03b-4402-4b6a-8527-d08eaa25afc3.jpg" alt="صبابين قهوة" loading="lazy">
+        <div class="gal-overlay"><span>صبابين قهوة</span></div>
+      </div>
+      <div class="gal-item wide">
+        <img src="https://i.postimg.cc/XY3WD6xj/805f314a-5a3b-43ca-ad61-9856fe5fa869.jpg" alt="ضيافة احترافية" loading="lazy">
+        <div class="gal-overlay"><span>ضيافة احترافية</span></div>
+      </div>
+      <div class="gal-item sq">
+        <img src="https://i.postimg.cc/rpZLm0TG/33ac88be-7221-45bb-b91b-ad58f6d91598.jpg" alt="قهوجيين" loading="lazy">
+        <div class="gal-overlay"><span>قهوجيين مناسبات</span></div>
+      </div>
+      <div class="gal-item tall">
+        <img src="https://i.postimg.cc/ZnpkVwdb/6e67f1c1-c4cc-4121-8d67-6f3c020f21b6.jpg" alt="صبابات قهوة" loading="lazy">
+        <div class="gal-overlay"><span>صبابات قهوة</span></div>
+      </div>
+      <div class="gal-item wide">
+        <img src="https://i.postimg.cc/nzrww06X/748b3d59-3b58-4c11-95e5-fe608f4cce31.jpg" alt="خدمة ضيافة" loading="lazy">
+        <div class="gal-overlay"><span>خدمة ضيافة</span></div>
+      </div>
+      <div class="gal-item sq">
+        <img src="https://i.postimg.cc/G9w7tr9d/c4048581-8e4f-4b9f-a1a5-8238041cd653.jpg" alt="ضيافة فاخرة" loading="lazy">
+        <div class="gal-overlay"><span>ضيافة فاخرة</span></div>
+      </div>
+      <div class="gal-item tall">
+        <img src="https://i.postimg.cc/dQbwryyB/9db8c66f-6016-4dd0-b05c-af41d6fb8816.jpg" alt="صبابين وصبابات" loading="lazy">
+        <div class="gal-overlay"><span>فريق الضيافة</span></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- كوش الأفراح والتنسيق -->
+  <div class="gallery-category">
+    <div class="gallery-cat-header">
+      <div class="gallery-cat-icon"><i class="fas fa-crown"></i></div>
+      <h3 class="gallery-cat-title"><span>05</span> كوش الأفراح والتنسيق</h3>
+      <div class="gallery-cat-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item span2">
+        <img src="https://i.postimg.cc/4NhbWGyT/86cbdc69-021d-4387-bcb4-7b1d3367bd8f.jpg" alt="جلسات شعبية الدمام" loading="lazy">
+        <div class="gal-overlay"><span>جلسات الدمام</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/KYT0B44R/ec67fc5b-4e9e-4dd3-8218-5b9dcb41f9e5.jpg" alt="كوش أعراس" loading="lazy">
+        <div class="gal-overlay"><span>كوش أفراح</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/3Nt1YvbW/61d7558a-b73e-4d24-a2f9-e51af4606744.jpg" alt="كوش زفاف" loading="lazy">
+        <div class="gal-overlay"><span>كوش زفاف</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/Gpvj9NSY/5cc6ad67-8640-4a76-a88e-9e709ccd121d.jpg" alt="طاولات استقبال" loading="lazy">
+        <div class="gal-overlay"><span>طاولات الاستقبال</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/SR16wpJX/c0000ed6-2739-49b4-ba7e-15719da908aa.jpg" alt="تنسيق كوش" loading="lazy">
+        <div class="gal-overlay"><span>تنسيق كوش</span></div>
+      </div>
+      <div class="gal-item span2">
+        <img src="https://i.postimg.cc/26F0y6SH/957f4ce1-0cd0-4d6d-986a-22d225929a52.jpg" alt="طاولات استقبال" loading="lazy">
+        <div class="gal-overlay"><span>استقبال فاخر</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/Qtsq23JV/167600bf-5fa8-40be-8e38-185514498486.jpg" alt="كوش أفراح" loading="lazy">
+        <div class="gal-overlay"><span>كوش أفراح</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/02308m0L/fa8b6b9a-d2c7-4d42-87a3-708b8240deed.jpg" alt="طاولات" loading="lazy">
+        <div class="gal-overlay"><span>طاولات فاخرة</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/3wjXCqQ2/164ad701-6edc-4507-93bb-4577e3daf619.jpg" alt="كوشات" loading="lazy">
+        <div class="gal-overlay"><span>كوشات راقية</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://i.postimg.cc/8kXhHW9w/aee97b6a-b138-4418-820a-bd3b5118366c.jpg" alt="تنسيق حفلات" loading="lazy">
+        <div class="gal-overlay"><span>تنسيق حفلات</span></div>
+      </div>
+      <div class="gal-item span2">
+        <img src="https://i.postimg.cc/QMgpj7HP/11bb39b5-5d5d-4373-936d-68fa24a9c3d7.jpg" alt="ديكور مناسبات" loading="lazy">
+        <div class="gal-overlay"><span>ديكور مناسبات</span></div>
+      </div>
+    </div>
+  </div>
+ 
 </section>
  
 <!-- About -->
@@ -1135,7 +1330,7 @@ const observer=new IntersectionObserver(entries=>{
   });
 },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
  
-document.querySelectorAll('.svc-card,.feat-card,.contact-card,.city-card').forEach(el=>{
+document.querySelectorAll('.svc-card,.feat-card,.contact-card,.gal-item').forEach(el=>{
   el.style.opacity='0';
   el.style.transform='translateY(28px)';
   el.style.transition='opacity 0.7s ease, transform 0.7s ease';
